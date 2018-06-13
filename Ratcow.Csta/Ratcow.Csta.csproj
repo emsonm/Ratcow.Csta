@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Engine\**" />
+    <EmbeddedResource Remove="Engine\**" />
+    <None Remove="Engine\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ratcow.Logs" Version="0.0.1" />
+    <PackageReference Include="Ratcow.Serialization" Version="0.0.1"/>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ratcow.Csta.Avaya.Dmcc\Ratcow.Csta.Avaya.Dmcc.csproj" />
+    <ProjectReference Include="..\Ratcow.Csta.Ecma323\Ratcow.Csta.Ecma323.csproj" />
+    <ProjectReference Include="..\Ratcow.Csta.Ecma354\Ratcow.Csta.Ecma354.csproj" />
+    <ProjectReference Include="..\Ratcow.Csta.Engine\Ratcow.Csta.Engine.csproj" />
+  </ItemGroup>
+</Project>

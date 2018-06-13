@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ratcow.Logs" Version="0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ratcow.Csta.Ecma323\Ratcow.Csta.Ecma323.csproj" />
+    <ProjectReference Include="..\Ratcow.Csta.Ecma354\Ratcow.Csta.Ecma354.csproj" />
+    <ProjectReference Include="..\Ratcow.Csta\Ratcow.Csta.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
