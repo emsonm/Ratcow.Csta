@@ -26,6 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{C4AF7D55-7
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ratcow.Csta.Bridge", "Ratcow.Csta.Bridge\Ratcow.Csta.Bridge.csproj", "{08E7FF07-0061-4548-910A-54DE1212F24F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ratcow.Csta.Engine.Core", "Ratcow.Csta.Engine.Core\Ratcow.Csta.Engine.Core.csproj", "{A8890A14-943F-4912-9585-805A98827BF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +64,14 @@ Global
 		{6011B175-D863-4E30-8B1E-467B98E5A947}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6011B175-D863-4E30-8B1E-467B98E5A947}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6011B175-D863-4E30-8B1E-467B98E5A947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08E7FF07-0061-4548-910A-54DE1212F24F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08E7FF07-0061-4548-910A-54DE1212F24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08E7FF07-0061-4548-910A-54DE1212F24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08E7FF07-0061-4548-910A-54DE1212F24F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8890A14-943F-4912-9585-805A98827BF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8890A14-943F-4912-9585-805A98827BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8890A14-943F-4912-9585-805A98827BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8890A14-943F-4912-9585-805A98827BF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

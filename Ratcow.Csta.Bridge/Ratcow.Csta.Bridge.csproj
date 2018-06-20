@@ -8,10 +8,9 @@
     <PackageReference Include="Ratcow.Logs" Version="0.0.1" />
     <PackageReference Include="Ratcow.Serialization" Version="0.0.1" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Ratcow.Csta.Avaya.Dmcc\Ratcow.Csta.Avaya.Dmcc.csproj" />
-    <ProjectReference Include="..\Ratcow.Csta.Ecma323\Ratcow.Csta.Ecma323.csproj" />
-    <ProjectReference Include="..\Ratcow.Csta.Ecma354\Ratcow.Csta.Ecma354.csproj" />
     <ProjectReference Include="..\Ratcow.Csta.Engine.Core\Ratcow.Csta.Engine.Core.csproj" />
   </ItemGroup>
+
 </Project>

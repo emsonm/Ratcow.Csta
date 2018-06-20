@@ -26,28 +26,14 @@
  *
  */
 
-namespace Ratcow.Csta.Server.Stub
+
+
+namespace Ratcow.Csta.Engine
 {
-    using Engine;
-    using Avaya.Dmcc.Server;
-    using Avaya.Dmcc;
-    using Engine.Events;
+    using System.Net.Sockets;
 
-    internal class DummyEventProcessor : IEventProcessor
+    public interface IServletFactory
     {
-        public IDmccServerDataProtocol[] Protocols { get; set; }
-
-        public void CreateProtocols()
-        {
-            Protocols = new IDmccServerDataProtocol[] 
-            {
-                DmccServerDataProtocolFactory.Create(DmccProtocolType.v63) //all we support at the moment
-            };
-        }
-
-        public void ProcessMessage<T>(MessageInProcessorEventArgs<T> e)
-        {
-            
-        }
+       IServlet CreateServlet(TcpClient connection);
     }
 }

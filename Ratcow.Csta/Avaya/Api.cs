@@ -45,8 +45,8 @@ namespace Ratcow.Csta.Avaya
     using Logs.Logging;
     using Ecma323.Ed3.AvayaExtensions;
     using Ecma354;
-    using Engine;
-    using Engine.Responses;
+    using Engine.Core;
+    using Engine.Core.Responses;
     using Events;
     using Serialization;
     using Dmcc;
@@ -166,14 +166,14 @@ namespace Ratcow.Csta.Avaya
                 else
                 {
                     var responseValue = comms.ReadXMLMessage();
-                    var root = XmlHelper.GetRootElementName(responseValue.Response);
+                    var root = XmlHelper.GetRootElementName(responseValue.Data);
 
                     switch (root)
                     {
                         #region Events
 
                         case nameof(OriginatedEvent):
-                            response = new CstaEventArgs<OriginatedEvent>(responseValue.Response)
+                            response = new CstaEventArgs<OriginatedEvent>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -181,7 +181,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(DeliveredEvent):
-                            response = new CstaEventArgs<DeliveredEvent>(responseValue.Response)
+                            response = new CstaEventArgs<DeliveredEvent>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -189,7 +189,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(EstablishedEvent):
-                            response = new CstaEventArgs<EstablishedEvent>(responseValue.Response)
+                            response = new CstaEventArgs<EstablishedEvent>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -197,7 +197,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(ConnectionClearedEvent):
-                            response = new CstaEventArgs<ConnectionClearedEvent>(responseValue.Response)
+                            response = new CstaEventArgs<ConnectionClearedEvent>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -205,7 +205,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(CallClearedEvent):
-                            response = new CstaEventArgs<CallClearedEvent>(responseValue.Response)
+                            response = new CstaEventArgs<CallClearedEvent>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -213,7 +213,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(FailedEvent):
-                            response = new CstaEventArgs<FailedEvent>(responseValue.Response)
+                            response = new CstaEventArgs<FailedEvent>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -221,7 +221,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(TransferedEvent):
-                            response = new CstaEventArgs<TransferedEvent>(responseValue.Response)
+                            response = new CstaEventArgs<TransferedEvent>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -229,7 +229,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(ConferencedEvent):
-                            response = new CstaEventArgs<ConferencedEvent>(responseValue.Response)
+                            response = new CstaEventArgs<ConferencedEvent>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -241,7 +241,7 @@ namespace Ratcow.Csta.Avaya
                         #region Responses
 
                         case nameof(AnswerCallResponse):
-                            response = new CstaEventArgs<AnswerCallResponse>(responseValue.Response)
+                            response = new CstaEventArgs<AnswerCallResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -249,7 +249,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(MakeCallResponse):
-                            response = new CstaEventArgs<MakeCallResponse>(responseValue.Response)
+                            response = new CstaEventArgs<MakeCallResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -257,7 +257,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(ResetApplicationSessionTimerPosResponse):
-                            response = new CstaEventArgs<ResetApplicationSessionTimerPosResponse>(responseValue.Response)
+                            response = new CstaEventArgs<ResetApplicationSessionTimerPosResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -265,7 +265,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(GetDeviceIdResponse):
-                            response = new CstaEventArgs<GetDeviceIdResponse>(responseValue.Response)
+                            response = new CstaEventArgs<GetDeviceIdResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -273,7 +273,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(ReleaseDeviceIdResponse):
-                            response = new CstaEventArgs<ReleaseDeviceIdResponse>(responseValue.Response)
+                            response = new CstaEventArgs<ReleaseDeviceIdResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -281,7 +281,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(GetThirdPartyDeviceIdResponse):
-                            response = new CstaEventArgs<GetThirdPartyDeviceIdResponse>(responseValue.Response)
+                            response = new CstaEventArgs<GetThirdPartyDeviceIdResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -289,7 +289,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(GetMonitorListResponse):
-                            response = new CstaEventArgs<GetMonitorListResponse>(responseValue.Response)
+                            response = new CstaEventArgs<GetMonitorListResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -297,7 +297,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(GetMonitorListEvent):
-                            response = new CstaEventArgs<GetMonitorListEvent>(responseValue.Response)
+                            response = new CstaEventArgs<GetMonitorListEvent>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -305,7 +305,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(MonitorStartResponse):
-                            response = new CstaEventArgs<MonitorStartResponse>(responseValue.Response)
+                            response = new CstaEventArgs<MonitorStartResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -313,7 +313,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(MonitorStopResponse):
-                            response = new CstaEventArgs<MonitorStopResponse>(responseValue.Response)
+                            response = new CstaEventArgs<MonitorStopResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -321,7 +321,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(RouteRegisterResponse):
-                            response = new CstaEventArgs<RouteRegisterResponse>(responseValue.Response)
+                            response = new CstaEventArgs<RouteRegisterResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -329,7 +329,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(RouteRegisterCancelResponse):
-                            response = new CstaEventArgs<RouteRegisterCancelResponse>(responseValue.Response)
+                            response = new CstaEventArgs<RouteRegisterCancelResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -337,7 +337,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(StartApplicationSessionPosResponse):
-                            response = new CstaEventArgs<StartApplicationSessionPosResponse>(responseValue.Response)
+                            response = new CstaEventArgs<StartApplicationSessionPosResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -354,7 +354,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(StartApplicationSessionNegResponse):
-                            response = new CstaEventArgs<StartApplicationSessionNegResponse>(responseValue.Response)
+                            response = new CstaEventArgs<StartApplicationSessionNegResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -362,7 +362,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case nameof(SystemRegisterResponse):
-                            response = new CstaEventArgs<SystemRegisterResponse>(responseValue.Response)
+                            response = new CstaEventArgs<SystemRegisterResponse>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -384,7 +384,7 @@ namespace Ratcow.Csta.Avaya
                         #region Errors
 
                         case nameof(CSTAException):
-                            response = new CstaEventArgs<CSTAException>(responseValue.Response)
+                            response = new CstaEventArgs<CSTAException>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)
@@ -392,7 +392,7 @@ namespace Ratcow.Csta.Avaya
                             break;
 
                         case "CSTAErrorCode":
-                            response = new CstaEventArgs<UniversalFailure>(responseValue.Response)
+                            response = new CstaEventArgs<UniversalFailure>(responseValue.Data)
                             {
                                 InvokeId = responseValue.InvokeId,
                                 UserData = GetUserData(responseValue.InvokeId)

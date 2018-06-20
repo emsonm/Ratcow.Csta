@@ -25,33 +25,8 @@
     along with Ratcow.Csta.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-
-
-namespace Ratcow.Csta.Engine
+ 
+namespace Ratcow.Csta.Engine.Core.Responses
 {
-    using Events;
-    using Avaya.Dmcc.Server;
-
-    public abstract class EventProcessor
-    {
-        public EventProcessor()
-        {
-            CreateProtocols();
-        }
-
-        public IDmccServerDataProtocol[] Protocols { get; protected set; }
-
-        public void ProcessMessage<T>(MessageInProcessorEventArgs<T> e)
-        {
-
-        }
-
-        //public event EventHandler<ProcessorEventArgs> MessageOut;
-
-        /// <summary>
-        /// This method must be overridden and the strategy for selecting the supported protocols must be set
-        /// </summary>
-        public abstract void CreateProtocols();
-    }
+    public enum ConnectionResponse { None, Success, Failed, CallServerUnavailable, Unsupported, SslAuthenticationError }
 }

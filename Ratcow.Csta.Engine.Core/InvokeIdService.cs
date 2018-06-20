@@ -26,28 +26,29 @@
  *
  */
 
-namespace Ratcow.Csta.Server.Stub
+namespace Ratcow.Csta.Engine.Core
 {
-    using Engine;
-    using Avaya.Dmcc.Server;
-    using Avaya.Dmcc;
-    using Engine.Events;
-
-    internal class DummyEventProcessor : IEventProcessor
+    public class InvokeIdService : IInvokeIdService
     {
-        public IDmccServerDataProtocol[] Protocols { get; set; }
+        readonly object invokeIdLock = new object();
 
-        public void CreateProtocols()
+        //this is taken from the Avaya example project as the comms is fairly similar
+        private int invokeId = 1;   // Holds the unique Invoke ID for each XML request        
+
+        public (string XmlSafeId, int InvokeId) Get()
         {
-            Protocols = new IDmccServerDataProtocol[] 
+            lock (invokeIdLock)
             {
-                DmccServerDataProtocolFactory.Create(DmccProtocolType.v63) //all we support at the moment
-            };
-        }
+                if (invokeId == 9999)
+                {
+                    invokeId = 1;
+                }
 
-        public void ProcessMessage<T>(MessageInProcessorEventArgs<T> e)
-        {
-            
+                var result = invokeId++;
+                var resultString = result.GetString();
+
+                return (resultString, result);
+            }
         }
     }
 }

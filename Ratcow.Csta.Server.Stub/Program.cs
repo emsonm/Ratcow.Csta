@@ -54,7 +54,7 @@ namespace Ratcow.Csta.Server.Stub
             rm.AddVdn("1315");
 
 
-            var server = new TcpCommsServer(new DummyEventProcessor(), rm)
+            var server = new ServerManager(new DummyEventProcessor(), rm)
             {
                 CallServerName = rm.SwitchName,
                 CallServerIpAddress = rm.SwitchIpAddress,

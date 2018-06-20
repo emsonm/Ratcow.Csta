@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ratcow.Logs" Version="0.0.1" />
+    <PackageReference Include="Ratcow.Serialization" Version="0.0.1" />
+  </ItemGroup>
+
+</Project>

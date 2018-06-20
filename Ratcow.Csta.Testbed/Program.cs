@@ -43,8 +43,6 @@ namespace Ratcow.Csta.Testbed
     {
         const string TEST_CONST = "A test";
 
-        static bool UseTestServerConfig = false;
-
         static void Main(string[] args)
         {
             //initiate the logging framework

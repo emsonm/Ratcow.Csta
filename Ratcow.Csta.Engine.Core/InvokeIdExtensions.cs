@@ -25,8 +25,14 @@
     along with Ratcow.Csta.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
- 
-namespace Ratcow.Csta.Engine.Responses
+
+namespace Ratcow.Csta.Engine.Core
 {
-    public enum ConnectionResponse { None, Success, Failed, CallServerUnavailable, Unsupported, SslAuthenticationError }
+    public static class InvokeIdExtensions
+    { 
+        public static string GetString(this int invokeId)
+        {
+            return invokeId.ToString()?.PadLeft(TcpCommsConstants.INVOKE_ID_LEN, '0');
+        }
+    }
 }

@@ -35,17 +35,17 @@ using System.Collections.Generic;
 namespace Ratcow.Csta.Engine
 {
     using Serialization;
-    using Responses;
+    using Core.Responses;
     using Logs.Logging;
 
     /// <summary>
     /// This is only implementing just enough to get by
     /// </summary>
-    public class TcpCommsServer
+    public class ServerManager
     {
-        readonly ILog logger = LogProvider.For<TcpCommsServer>();
+        readonly ILog logger = LogProvider.For<ServerManager>();
 
-        EventProcessor eventProcessor = null;
+        IEventProcessor eventProcessor = null;
         ResourceManager resourceManager = null;
         TcpListener server = null;
         public string Address { get; set; }
@@ -56,9 +56,9 @@ namespace Ratcow.Csta.Engine
         public bool Running { get; private set; }
         public string CallServerIpAddress { get; set; }
 
-        List<TcpCommsServlet> servlets = new List<TcpCommsServlet>();
+        List<Servlet> servlets = new List<Servlet>();
 
-        public TcpCommsServer(EventProcessor ep, ResourceManager rm)
+        public ServerManager(IEventProcessor ep, ResourceManager rm)
         {
             eventProcessor = ep;
             resourceManager = rm;
@@ -96,7 +96,7 @@ namespace Ratcow.Csta.Engine
         {
             logger.Debug("Adding client");
 
-            var servlet = new TcpCommsServlet
+            var servlet = new Servlet
             {
                 Parent = this,
                 Client = client,

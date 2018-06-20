@@ -26,28 +26,12 @@
  *
  */
 
-namespace Ratcow.Csta.Server.Stub
+namespace Ratcow.Csta.Engine.Core
 {
-    using Engine;
-    using Avaya.Dmcc.Server;
-    using Avaya.Dmcc;
-    using Engine.Events;
-
-    internal class DummyEventProcessor : IEventProcessor
+    public static class TcpCommsConstants
     {
-        public IDmccServerDataProtocol[] Protocols { get; set; }
-
-        public void CreateProtocols()
-        {
-            Protocols = new IDmccServerDataProtocol[] 
-            {
-                DmccServerDataProtocolFactory.Create(DmccProtocolType.v63) //all we support at the moment
-            };
-        }
-
-        public void ProcessMessage<T>(MessageInProcessorEventArgs<T> e)
-        {
-            
-        }
+        public const int XML_HEADER_LEN = 8;
+        public const int INVOKE_ID_LEN = 4;
+        public const int VERSION_LEN = 2;
     }
 }
